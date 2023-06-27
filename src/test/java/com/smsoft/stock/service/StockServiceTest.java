@@ -3,6 +3,7 @@ package com.smsoft.stock.service;
 
 import com.smsoft.stock.domain.Stock;
 import com.smsoft.stock.repository.StockRepository;
+import jdk.jfr.Percentage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class StockServiceTest {
     @Autowired
-    private StockService stockService;
+    private PessimisticLockStockService stockService;
 
     @Autowired
     private StockRepository stockRepository;
