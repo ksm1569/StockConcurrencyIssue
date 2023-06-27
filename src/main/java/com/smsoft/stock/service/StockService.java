@@ -3,8 +3,8 @@ package com.smsoft.stock.service;
 import com.smsoft.stock.domain.Stock;
 import com.smsoft.stock.repository.StockRepository;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class StockService {
@@ -20,7 +20,7 @@ public class StockService {
        3. 저장
     */
 
-    //@Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public synchronized void decrease(Long id, Long quantity){
         Stock stock = stockRepository.findById(id).orElseThrow();
         stock.decrease(quantity);
