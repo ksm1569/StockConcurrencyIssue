@@ -4,6 +4,8 @@ import com.smsoft.stock.domain.Stock;
 import com.smsoft.stock.repository.StockRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class StockService {
     private StockRepository stockRepository;
@@ -17,7 +19,9 @@ public class StockService {
        2. 재고감소시키기
        3. 저장
     */
-    public void decrease(Long id, Long quantity){
+
+    //@Transactional
+    public synchronized void decrease(Long id, Long quantity){
         Stock stock = stockRepository.findById(id).orElseThrow();
         stock.decrease(quantity);
 
