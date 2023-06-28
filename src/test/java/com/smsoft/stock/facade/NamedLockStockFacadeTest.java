@@ -1,4 +1,4 @@
-package com.smsoft.stock.pacade;
+package com.smsoft.stock.facade;
 
 import com.smsoft.stock.domain.Stock;
 import com.smsoft.stock.repository.StockRepository;

@@ -1,4 +1,4 @@
-package com.smsoft.stock.pacade;
+package com.smsoft.stock.facade;
 
 import com.smsoft.stock.service.OptimisticLockStockService;
 import org.springframework.stereotype.Service;
