@@ -26,3 +26,95 @@
 
 
 ### ✍ Flow
+- 재고관리 테이블 생성(stock_example), 데이터 입력, 재고감소 로직 추가, junit으로 재고감소 로직 테스트완료
+- 다중스레드를 발생시켜(100개) 동시성 테스트
+- 자바의 synchronized 사용해보기
+
+  서버가 여러대 일 경우 문제 발생, Transactional 특성상 충돌 인식
+- Mysql로 해결
+  
+  - Pessimistic Lock
+  
+    테이블과 데이터에 락을 걸어서 정합성을 맞추는 방법 - 데드락 주의 필요
+  - Optimistic Lock
+  
+    버전컬럼을 이용해서 update 하기전에 버전체크를 한다
+  - Named Lock - 이름을 가진 metadata Locking 방법
+  
+    이름을 가진 락을 획득한 후 해제할때까지 다른 세션은 이 lock 을 획득할 수 없도록 한다 (별도 해제필요)
+ 
+- 라이브러리로 해결
+
+  - Lettuce
+  
+    setnx (set if not exist) - key value 값을 set할때, 기존의 값이 없을때만 set한다
+    
+    spin lock 방식 - 락 획득 할때 까지 재시도 하는 로직(retry)을 개발자가 직접구현해야함
+  - Redisson
+    
+    pub-sub 기반 lock제공 - 별도 라이브러리가 설치가 필요함
+
+    채널을 하나 두어서 스레드가 락종료시 알려준다
+
+  -> 재시도가 필요하지 않은 lock 은 lettuce 활용
+
+  -> 재시도가 필요한 경우에는 redisson 를 활용
+
+- 테스트 스크린샷
+
+  <details>
+  <summary>접기/펼치기 버튼</summary>
+  <div markdown="1">
+  
+    <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/9c9ab9a0-4670-416e-84e0-fee5257bc625">
+  
+    <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/1e5e39f6-6b19-45cd-9270-3437eb396308">
+  
+    <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/17071503-2671-4c34-9688-1fd410b0a210">
+  
+  </div>
+  </details>
+
+
+- 각종 셋팅 메모
+  <details>
+  <summary>접기/펼치기 버튼</summary>
+  <div markdown="1">
+
+  ```Shell
+    #mysql
+  
+    docker pull mysql
+    docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 --name mysql mysql
+    docker ps
+  ```
+
+  ```Shell
+    #mysql bash로 진입하여 데이터베이스 생성
+  
+    docker exec -it mysql bash
+    mysql -u root -p
+    password 입력
+    create database stock_example
+    use stock_example
+  ```
+  
+  ```Shell
+    #redis
+  
+    docker pull redis
+  
+    docker run --name myredis -d -p 6379:6379 redis
+  ```
+  
+  ```Shell
+    #터미널 테스트
+  
+     1. docker ps 로 redis 컨테이너명 가져온다음
+     2. docker exec -it 컨테이너명 redis-cli 입력하면 내부로 진입가능
+     3. 내부에서 채널1 구독해본다. subscribe ch1
+     4. 터미널 하나 더 열어서 publish ch1 hi 라는 메세지를 보내본다
+  ```
+  
+  </div>
+  </details>
