@@ -60,23 +60,23 @@
 
   -> 재시도가 필요한 경우에는 redisson 를 활용
 
-- 테스트 스크린샷
+### 📸 테스트 스크린샷
 
   <details>
   <summary>접기/펼치기 버튼</summary>
   <div markdown="1">
   
-    <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/9c9ab9a0-4670-416e-84e0-fee5257bc625">
+  <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/9c9ab9a0-4670-416e-84e0-fee5257bc625">
   
-    <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/1e5e39f6-6b19-45cd-9270-3437eb396308">
+  <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/1e5e39f6-6b19-45cd-9270-3437eb396308">
   
-    <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/17071503-2671-4c34-9688-1fd410b0a210">
+  <img width="600" src="https://github.com/ksm1569/DevBlog/assets/34292113/17071503-2671-4c34-9688-1fd410b0a210">
   
   </div>
   </details>
 
 
-- 각종 셋팅 메모
+### 📝 각종 셋팅 메모
   <details>
   <summary>접기/펼치기 버튼</summary>
   <div markdown="1">
